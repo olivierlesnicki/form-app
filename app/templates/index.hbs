@@ -1,5 +1,22 @@
-{{#bg-form as |form|}}
+<h1>Bg form 2</h1>
+{{#bg-form.form data=user validations=userFormRules}}
 
+  {{#bg-form.form-group}}
+    {{input value=user.firstName}}
+  {{/bg-form.form-group}}
+
+  {{#bg-form.form-group}}
+    {{input value=user.lastName}}
+  {{/bg-form.form-group}}
+{{/bg-form.form}}
+
+
+
+<h1>Bg form 1</h1>
+
+{{#bg-form user=user as |form|}}
+
+{{form.somethingChanged}}
   <div>
     Form
     <ul>
@@ -45,3 +62,5 @@
   </div>
 
 {{/bg-form}}
+
+{{form.valid}}

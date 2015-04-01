@@ -29,6 +29,7 @@ export default Ember.TextField.extend({
     'status.blurred:bg-blurred'
   ],
 
+  value: Ember.computed.alias('model'),
   init: function () {
 
     var form;
@@ -37,7 +38,7 @@ export default Ember.TextField.extend({
     this._super();
 
     // Set default value from model
-    this.set('value', this.get('model'));
+    // this.set('value', this.get('model'));
 
     // Create an empty status object
     this.set('status', StatusObject.create({
@@ -55,9 +56,12 @@ export default Ember.TextField.extend({
 
       // Store a reference
       // to the bg-form
-      this.form = form;
-
-      this.form.get('_statuses').pushObject(this.get('status'));
+      // this.form = form;
+      // this.form.get('_statuses').pushObject(this.get('status'));
+      // this.form.set(this.get('name'), this.get('status'));
+      this.set('form', form);
+      this.get('form').get('_statuses').pushObject(this.get('status'));
+      this.get('form').set(this.get('name'), this.get('status'));
 
     }
 
@@ -80,27 +84,12 @@ export default Ember.TextField.extend({
 
   },
 
-  onModelChange: function () {
-    if(this.get('model') !== this.get('value')) {
-      this.set('value', this.get('model'));
-    }
-  }.observes('model'),
-
   onValueChange: function () {
-    if(this.get('model') !== this.get('value')) {
-      this.set('status.pristine', false);
-      if (!this.get('value')) {
-        this.set('status.valid', false);
-      } else {
-        this.set('status.valid', true);
-      }
-      this.set('model', this.get('value'));
-    }
-  }.observes('value'),
+    // validation here
+    this.set('status.pristine', false);
+    this.set('status.valid', false);
 
-  onNameChange: function () {
-    this.set('status.name', this.get('name'));
-    this.form.set(this.get('name'), this.get('status'));
-  }.observes('name').on('init')
+  }.observes('value')
+
 
 });

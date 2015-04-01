@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/bg-form';
+import EmberValidations from 'ember-validations';
 
 var FormObject = Ember.Object.extend({
   valid: function () {
@@ -8,8 +9,9 @@ var FormObject = Ember.Object.extend({
   invalid: Ember.computed.not('valid')
 })
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(EmberValidations.Mixin, {
 
+  tagName: 'form',
   layout: layout,
 
   classNameBindings: [
@@ -25,6 +27,10 @@ export default Ember.Component.extend({
   },
 
   valid: Ember.computed.readOnly('form.valid'),
-  invalid: Ember.computed.readOnly('form.invalid')
+  invalid: Ember.computed.readOnly('form.invalid'),
+
+  onSomethingChanged: function () {
+  }.observes('form._statuses.[]'),
+  somethingChanged: 'inital'
 
 });
