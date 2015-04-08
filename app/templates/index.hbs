@@ -1,4 +1,97 @@
-{{input value=user.firstName}}
-{{input value=user.lastName}}
+<h2>Both input has initial value</h2>
+<hr />
+<table border=1 cellpadding=10>
+  <tr>
+    <td>
+    User1:
+<pre>
+{
+  firstName: 'Gabor',
+  lastName: 'Czene'
+}
+</pre>
+Validation:
+<pre>
+{
+  firstName: {
+    presence: true
+  },
+  lastName: {
+    presence: true
+  }
+}
+</pre>
 
-{{user.valid}}
+    </td>
+    <td>
+    <h3>Form</h3>
+
+
+{{input value=user1.firstName}}
+{{input value=user1.lastName}}
+
+<hr />
+Statuses:<br />
+<code>user1.$status.firstName.valid</code>: {{user1.$status.firstName.valid}}
+<br />
+
+<code>user1.$status.lastName.valid</code>: {{user1.$status.lastName.valid}}
+
+<hr />
+<code>user1.$valid</code>:
+{{user1.$valid}}
+
+
+    </td>
+  </tr>
+</table>
+
+
+<h2>LastName is missing at page load</h2>
+<hr />
+<table border=1 cellpadding=10>
+  <tr>
+    <td>
+    User2:
+<pre>
+{
+  firstName: 'Olivier',
+  lastName: ''
+}
+</pre>
+Validation:
+<pre>
+{
+  firstName: {
+    presence: true,
+    length: {minimum: 3}
+  },
+  lastName: {
+    presence: true
+  }
+}
+</pre>
+
+    </td>
+    <td>
+    <h3>Form</h3>
+
+
+{{input value=user2.firstName}}
+{{input value=user2.lastName}}
+
+<hr />
+Statuses:<br />
+<code>user2.$status.firstName.valid</code>: {{user2.$status.firstName.valid}}
+<br />
+
+<code>user2.$status.lastName.valid</code>: {{user2.$status.lastName.valid}}
+
+<hr />
+<code>user2.$valid</code>:
+{{user2.$valid}}
+
+
+    </td>
+  </tr>
+</table>

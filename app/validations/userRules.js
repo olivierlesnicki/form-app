@@ -1,7 +1,7 @@
 export default {
-  // firstName: {
-  //   presence: true
-  // },
+  firstName: {
+    presence: true
+  },
   lastName: {
     presence: true
   }
